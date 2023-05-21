@@ -11,7 +11,6 @@ class WeatherUpcoming extends Component {
         {data.list.map((day) => {
           return <WeatherSnapshot day={day} />;
         })}
-        ;
       </>
     );
   }

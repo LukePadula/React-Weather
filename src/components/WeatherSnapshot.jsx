@@ -1,16 +1,22 @@
 import React, { Component } from "react";
+import "../App.css";
 
 class WeatherSnapshot extends Component {
-  state = { date: new Date(this.props.day.dt), temp: this.props.day.main.temp };
+  state = {
+    date: new Date(this.props.day.dt * 1000),
+    temp: this.props.day.main.temp,
+  };
 
   render() {
-    console.log(this.props.day, "PROPS");
-
-    console.log(this.state.date.getDate());
     return (
-      <div>
-        <h2>{this.state.date.toLocaleString("default", { month: "long" })}</h2>
-        <small>{this.state.temp}</small>
+      <div className="snapshot">
+        <h3>
+          {this.state.date.toLocaleString("en-GB", {
+            weekday: "long",
+            month: "long",
+          })}
+        </h3>
+        <small>{this.state.temp} degrees</small>
       </div>
     );
   }
