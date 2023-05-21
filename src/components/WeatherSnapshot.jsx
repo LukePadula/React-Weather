@@ -4,7 +4,8 @@ import "../App.css";
 class WeatherSnapshot extends Component {
   state = {
     date: new Date(this.props.day.dt * 1000),
-    temp: this.props.day.main.temp,
+    temp: Math.round(this.props.day.main.temp),
+    weather: this.props.day.weather[0].description,
   };
 
   render() {
@@ -12,11 +13,16 @@ class WeatherSnapshot extends Component {
       <div className="snapshot">
         <h3>
           {this.state.date.toLocaleString("en-GB", {
+            hour: "2-digit",
+            minute: "numeric",
+            day: "numeric",
             weekday: "long",
             month: "long",
           })}
         </h3>
-        <small>{this.state.temp} degrees</small>
+        <small>
+          {this.state.weather} {this.state.temp} degrees
+        </small>
       </div>
     );
   }

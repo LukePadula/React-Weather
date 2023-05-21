@@ -46,7 +46,9 @@ class App extends Component {
   }
   render() {
     return !this.state.data ? (
-      <h2 className="loading-text">Loading</h2>
+      <div className="loading-cont">
+        <h2 className="loading-text">Loading</h2>
+      </div>
     ) : (
       <div className="content">
         <h1>Upcoming weather</h1>
