@@ -4,13 +4,13 @@ import WeatherUpcoming from "./components/WeatherUpcoming";
 import "./App.css";
 
 class App extends Component {
-  state = { data: null, daysCount: 0 };
+  state = { data: null, daysCount: 0, location: null };
 
   countDays = (data) => {
     let weatherDates = [];
-    console.log(data.list);
+
+    this.setState({ location: data.city.name });
     data.list.forEach((weatherSnapshot) => {
-      console.log(weatherSnapshot, "SNAP");
       let date = new Date(weatherSnapshot.dt * 1000);
       console.log(date.getDate());
       if (!weatherDates.includes(date.getDate()))
@@ -45,13 +45,14 @@ class App extends Component {
     );
   }
   render() {
+    console.log(this.state.data);
     return !this.state.data ? (
       <div className="loading-cont">
         <h2 className="loading-text">Loading</h2>
       </div>
     ) : (
       <div className="content">
-        <h1>Upcoming weather</h1>
+        <h1>{this.state.location} upcoming weather</h1>
         <h2>The weather for the upcoming {this.state.daysCount} days</h2>
         <WeatherUpcoming data={this.state.data} />
       </div>
